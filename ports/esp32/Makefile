@@ -152,6 +152,10 @@ SRC_C = \
 	machine_hw_spi.c \
 	machine_wdt.c \
 	mpthreadport.c \
+	mabot_delay.c \
+	mabot_printf.c \
+	mabot_rgb.c \
+	modmabot.c \
 	$(SRC_MOD)
 
 EXTMOD_SRC_C = $(addprefix extmod/,\
