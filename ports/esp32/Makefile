@@ -155,6 +155,10 @@ SRC_C = \
 	mabot_delay.c \
 	mabot_printf.c \
 	mabot_rgb.c \
+	mpu6050.c \
+	inv_mpu.c \
+	inv_mpu_dmp_motion_driver.c \
+	mabot_gyro.c \
 	modmabot.c \
 	$(SRC_MOD)
 
@@ -223,6 +227,7 @@ ESPIDF_DRIVER_O = $(addprefix $(ESPCOMP)/driver/,\
 	spi_master.o \
 	spi_common.o \
 	rtc_module.o \
+	i2c.o \
 	)
 
 $(BUILD)/$(ESPCOMP)/esp32/dport_access.o: CFLAGS += -Wno-array-bounds

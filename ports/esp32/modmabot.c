@@ -42,7 +42,7 @@
 STATIC const mp_rom_map_elem_t mabot_module_globals_table[] = 
 {
     { MP_ROM_QSTR(MP_QSTR_DELAY), MP_ROM_PTR(&mabot_delay_type) },
-    //{ MP_ROM_QSTR(MP_QSTR_GYRO), MP_ROM_PTR(&mabot_gyro_type) },
+    { MP_ROM_QSTR(MP_QSTR_GYRO), MP_ROM_PTR(&mabot_gyro_type) },
     { MP_ROM_QSTR(MP_QSTR_RGB), MP_ROM_PTR(&mabot_rgb_type) },
     { MP_ROM_QSTR(MP_QSTR_PRINTF), MP_ROM_PTR(&mabot_printf_type) },   
 };

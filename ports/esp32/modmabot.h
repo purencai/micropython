@@ -4,7 +4,7 @@
 #include "py/obj.h"
 
 extern const mp_obj_type_t mabot_delay_type;
-//extern const mp_obj_type_t mabot_gyro_type;
+extern const mp_obj_type_t mabot_gyro_type;
 extern const mp_obj_type_t mabot_rgb_type;
 extern const mp_obj_type_t mabot_printf_type;
 
