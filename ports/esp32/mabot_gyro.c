@@ -92,7 +92,7 @@ STATIC void gyro_task(void *pvParameter)
 
 STATIC void gyro_main(void)
 {
-    xTaskCreatePinnedToCore(gyro_task, "gyro_task", 4096, NULL, (ESP_TASK_PRIO_MIN + 3), NULL, 0);
+    xTaskCreatePinnedToCore(gyro_task, "gyro_task", 4096, NULL, (ESP_TASK_PRIO_MAX - 1), NULL, 0);
 }
 STATIC mp_obj_t mabot_gyro_make_new(const mp_obj_type_t *type_in, size_t n_args, size_t n_kw, const mp_obj_t *args) 
 {

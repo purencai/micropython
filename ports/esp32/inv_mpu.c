@@ -2940,7 +2940,7 @@ uint8_t mpu_dmp_init(void)
 		if(res)return 1; 
 		res=mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL);
 		if(res)return 2; 
-		res=mpu_set_sample_rate(DEFAULT_MPU_HZ);
+		res=mpu_set_sample_rate(400);
 		if(res)return 3; 
 		res=dmp_load_motion_driver_firmware();
 		if(res)return 4; 
@@ -2950,7 +2950,7 @@ uint8_t mpu_dmp_init(void)
 		    DMP_FEATURE_ANDROID_ORIENT|DMP_FEATURE_SEND_RAW_ACCEL|DMP_FEATURE_SEND_CAL_GYRO|
 		    DMP_FEATURE_GYRO_CAL);
 		if(res)return 6; 
-		res=dmp_set_fifo_rate(DEFAULT_MPU_HZ);
+		res=dmp_set_fifo_rate(200);
 		if(res)return 7;   
 		// res=run_self_test();
 		// if(res)return 8;    
