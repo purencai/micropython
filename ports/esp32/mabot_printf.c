@@ -68,7 +68,7 @@ static void debug_serial_init(void)
 
     uart_param_config(DEBUG_SERIAL_NUM, &uart_config);
     uart_set_pin(DEBUG_SERIAL_NUM, DEBUG_SERIAL_TXD, DEBUG_SERIAL_RXD, DEBUG_SERIAL_RTS, DEBUG_SERIAL_CTS);
-    uart_driver_install(DEBUG_SERIAL_NUM, 256, 1024, 0, NULL,0);
+    uart_driver_install(DEBUG_SERIAL_NUM, 256, 0, 0, NULL,0);
 }
 
 char serial_tx_buf[256];

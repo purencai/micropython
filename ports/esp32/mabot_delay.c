@@ -51,7 +51,7 @@ STATIC mp_obj_t mabot_delay_make_new(const mp_obj_type_t *type_in, size_t n_args
     return MP_OBJ_FROM_PTR(self);
 }   
 
-STATIC mp_obj_t mabot_delay_ms (mp_obj_t self_in, mp_obj_t value_in )
+STATIC mp_obj_t mabot_delay_ms ( mp_obj_t self_in, mp_obj_t value_in )
 {
     mabot_delay_obj_t *self = MP_OBJ_TO_PTR(self_in);
     self = self;

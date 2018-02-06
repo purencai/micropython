@@ -7,5 +7,6 @@ extern const mp_obj_type_t mabot_delay_type;
 extern const mp_obj_type_t mabot_gyro_type;
 extern const mp_obj_type_t mabot_rgb_type;
 extern const mp_obj_type_t mabot_printf_type;
+extern const mp_obj_type_t mabot_serial_type;
 
 #endif // __MABOT_H__

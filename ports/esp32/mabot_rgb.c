@@ -191,10 +191,10 @@ STATIC mp_obj_t mabot_rgb_led_make_new(const mp_obj_type_t *type_in, size_t n_ar
 
     ledc_timer_config_t ledc_timer = 
     {
-        .bit_num = LEDC_TIMER_15_BIT,           
-        .freq_hz = 2000,                        
-        .speed_mode = LEDC_HIGH_SPEED_MODE,     
-        .timer_num = LEDC_TIMER_0              
+        .bit_num = LEDC_TIMER_15_BIT,
+        .freq_hz = 2000,
+        .speed_mode = LEDC_HIGH_SPEED_MODE,
+        .timer_num = LEDC_TIMER_0
     };
     ledc_timer_config(&ledc_timer);
 

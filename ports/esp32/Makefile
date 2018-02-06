@@ -159,6 +159,10 @@ SRC_C = \
 	inv_mpu.c \
 	inv_mpu_dmp_motion_driver.c \
 	mabot_gyro.c \
+	crc16.c \
+	timer.c \
+	stm32_serial.c \
+	mabot_serial.c \
 	modmabot.c \
 	$(SRC_MOD)
 
