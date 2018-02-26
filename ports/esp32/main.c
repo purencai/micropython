@@ -51,11 +51,16 @@
 #include "gccollect.h"
 #include <stdlib.h>
 
+#include "tcpip_server.h"
+#include "message_manager.h"
+#include "stm32_serial.h"
+#include "timer.h"
+
 // MicroPython runs as a task under FreeRTOS
 #define MP_TASK_PRIORITY        (ESP_TASK_PRIO_MIN + 1)
-#define MP_TASK_STACK_SIZE      (32 * 1024)
+#define MP_TASK_STACK_SIZE      (16 * 1024)
 #define MP_TASK_STACK_LEN       (MP_TASK_STACK_SIZE / sizeof(StackType_t))
-#define MP_TASK_HEAP_SIZE       (108 * 1024)
+#define MP_TASK_HEAP_SIZE       (96 * 1024)
 
 StaticTask_t mp_task_tcb;
 StackType_t mp_task_stack[MP_TASK_STACK_LEN] __attribute__((aligned (8)));
@@ -122,6 +127,10 @@ soft_reset:
 
 void app_main(void) {
     nvs_flash_init();
+    create_queue_semaphore();
+    group0_timer0_init(80,1000-1);
+    stm32_serial_init();
+    tcpip_server_init();
     xTaskCreateStaticPinnedToCore(mp_task, "mp_task", MP_TASK_STACK_LEN, NULL, MP_TASK_PRIORITY,
                                   &mp_task_stack[0], &mp_task_tcb, 0);
 }

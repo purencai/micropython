@@ -47,8 +47,8 @@
 #include "stm32_serial.h"
 
 #define TIMER_DIVIDER           80        //  Hardware timer clock divider
-#define TIMER_SCALE           (TIMER_BASE_CLK / TIMER_DIVIDER)  // convert counter value to seconds 80M/80=1000KHz
-#define TIMER_INTERVAL0_COUNT (1000-1)  // sample test interval for the first timer
+#define TIMER_SCALE             (TIMER_BASE_CLK / TIMER_DIVIDER)  // convert counter value to seconds 80M/80=1000KHz
+#define TIMER_INTERVAL0_COUNT   (1000-1)  // sample test interval for the first timer
 #define WITHOUT_RELOAD          0         // testing will be done without auto reload
 #define WITH_RELOAD             1         // testing will be done with auto reload
 

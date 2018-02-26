@@ -164,6 +164,12 @@ SRC_C = \
 	stm32_serial.c \
 	mabot_serial.c \
 	modmabot.c \
+	tcpip_server.c \
+	tcpip_recevie.c \
+	tcpip_transfer.c \
+	tcpip_task.c \
+	wifi_cmd.c \
+	message_manager.c \
 	$(SRC_MOD)
 
 EXTMOD_SRC_C = $(addprefix extmod/,\

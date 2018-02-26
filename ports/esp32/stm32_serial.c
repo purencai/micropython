@@ -72,14 +72,14 @@ SemaphoreHandle_t USART_Semaphore = NULL;
 
 void usart_rx_process(uint8_t *rx_buff);
 
-static const char *TAG = "stm32_serial";
+static const char *TAG = "stm32_serial : ";
 
 static inline void create_usart_semaphore(void)
 {
     USART_Semaphore = xSemaphoreCreateCounting(QUEUE_LENGTH, 0);
     if(USART_Semaphore == NULL)
     {
-        printf("create USART_Semaphore fail\r\n");
+        ESP_LOGI( TAG, "create USART_Semaphore fail\r\n" );
     }
 }
 
@@ -154,7 +154,7 @@ static inline void usart_irq(LOOP_QUEUE *q, const uint8_t *data,uint16_t length)
 
 static inline void timer_irq(LOOP_QUEUE *q, uint8_t queue[][BUFF_LENGTH])
 {
-    BaseType_t xHigherPriorityTaskWoken;
+    // BaseType_t xHigherPriorityTaskWoken;
     if (q->timer_cnt > 0)
     {
         q->timer_cnt++;
@@ -165,12 +165,12 @@ static inline void timer_irq(LOOP_QUEUE *q, uint8_t queue[][BUFF_LENGTH])
 
         if (q->buff == NULL)
         {
-            printf("stm32_usart_queue full\r\n");
+            ESP_LOGE( TAG, "stm32_usart_queue full\r\n" );
         }
         q->buff_cnt = 0;
         q->timer_cnt = 0;
 
-        //give a counting semaphore
+        // give a counting semaphore
         // if ( xTaskGetSchedulerState() == taskSCHEDULER_NOT_STARTED )return;
         // xSemaphoreGiveFromISR(USART_Semaphore, &xHigherPriorityTaskWoken);
         // portYIELD_FROM_ISR();
@@ -246,7 +246,7 @@ void usart_rx_task(void *pvParameter)
     {
         while( xSemaphoreTake( USART_Semaphore, pdMS_TO_TICKS(portMAX_DELAY) ) != pdPASS )
         {
-            printf("USART_Semaphore error\r\n");
+            ESP_LOGE( TAG, "USART_Semaphore error\r\n" );
         }
         usart_cmd = stm32_usart_queue_read();
         if ( usart_cmd )
@@ -273,14 +273,11 @@ void stm32_serial_init(void)
     uart_set_pin(STM32_SERIAL_NUM, STM32_SERIAL_TXD, STM32_SERIAL_RXD, STM32_SERIAL_RTS, STM32_SERIAL_CTS);
     uart_driver_install(STM32_SERIAL_NUM, 256, 0, 10, &stm32_serial_event_queue, 0);
 
-    //uart_enable_pattern_det_intr(STM32_SERIAL_NUM, '+', 3, 10000, 10, 10);
-
     stm32_usart_queue_init();
 
     create_usart_semaphore();
 
     xTaskCreatePinnedToCore(uart_event_task, "uart_event_task", 1024, NULL, (ESP_TASK_PRIO_MAX - 2), NULL, 0);
-    //xTaskCreate(usart_rx_task, "usart_rx_task", 2048, NULL, (ESP_TASK_PRIO_MIN ), NULL);
 }
 void uart_puts(uart_port_t uart_num, const char *buff, uint16_t length)
 {
